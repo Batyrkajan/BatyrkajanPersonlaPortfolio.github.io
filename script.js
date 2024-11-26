@@ -1,7 +1,7 @@
 // script.js
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Smooth Scrolling
+  // Smooth Scrolling for Navigation Links
   const navLinks = document.querySelectorAll("nav ul li a");
 
   navLinks.forEach((link) => {
@@ -34,20 +34,38 @@ document.addEventListener("DOMContentLoaded", () => {
     contactForm.reset();
   });
 
-  // Dark Mode Toggle
+  // Dark Mode Toggle Functionality with Persistence
   const themeToggle = document.getElementById("theme-toggle");
 
-  themeToggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-    document.querySelector("nav").classList.toggle("dark-mode");
-    document.querySelector("footer").classList.toggle("dark-mode");
-
-    // Change toggle button icon
-    if (document.body.classList.contains("dark-mode")) {
-      themeToggle.textContent = "☀️";
+  // Function to set the theme based on a boolean parameter
+  function setTheme(isDark) {
+    if (isDark) {
+      document.body.classList.add("dark-mode");
+      document.querySelector("nav").classList.add("dark-mode");
+      document.querySelector("footer").classList.add("dark-mode"); // Optional: If you have a footer
+      themeToggle.textContent = "☀️"; // Sun icon for light mode
     } else {
-      themeToggle.textContent = "🌙";
+      document.body.classList.remove("dark-mode");
+      document.querySelector("nav").classList.remove("dark-mode");
+      document.querySelector("footer").classList.remove("dark-mode"); // Optional: If you have a footer
+      themeToggle.textContent = "🌙"; // Moon icon for dark mode
     }
+  }
+
+  // Check localStorage for theme preference on load
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    setTheme(true);
+  } else {
+    setTheme(false);
+  }
+
+  // Dark Mode Toggle with Persistence
+  themeToggle.addEventListener("click", () => {
+    const isDark = !document.body.classList.contains("dark-mode");
+    setTheme(isDark);
+    // Save the preference to localStorage
+    localStorage.setItem("theme", isDark ? "dark" : "light");
   });
 
   // Initialize AOS (Animate On Scroll)

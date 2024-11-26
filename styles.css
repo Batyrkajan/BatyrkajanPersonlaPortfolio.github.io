@@ -29,8 +29,8 @@ nav {
 }
 
 nav.dark-mode {
-  background-color: #1f1f1f;
-  color: #f0f0f0;
+  background-color: #ffffff;
+  color: #333333;
 }
 
 nav ul {
@@ -50,6 +50,10 @@ nav ul li a {
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
+nav.dark-mode ul li a {
+  color: #333333;
+}
+
 nav ul li a:hover {
   color: #ff6347;
   transform: scale(1.1);
@@ -65,8 +69,16 @@ nav ul li a:hover {
   transition: transform 0.3s ease;
 }
 
+nav.dark-mode #theme-toggle {
+  color: #333333;
+}
+
 #theme-toggle:hover {
   transform: rotate(20deg);
+}
+
+#theme-toggle:focus {
+  outline: 2px solid #ff6347; /* High-contrast outline for focus */
 }
 
 /* Section Styling */
@@ -87,6 +99,36 @@ section {
   background: #fff;
 }
 
+/* Dark Mode for Sections */
+body.dark-mode #home {
+  background-color: #1e1e1e; /* Slightly lighter dark background for home section */
+}
+
+body.dark-mode #about,
+body.dark-mode #projects,
+body.dark-mode #contact {
+  background-color: #1f1f1f; /* Dark background for other sections */
+}
+
+body.dark-mode footer {
+  background-color: #1f1f1f; /* Dark background for footer */
+  color: #f0f0f0; /* Light text color for footer */
+}
+
+/* Text Colors in Dark Mode */
+body.dark-mode #home h1,
+body.dark-mode #home p,
+body.dark-mode #about h2,
+body.dark-mode #about p,
+body.dark-mode #projects h2,
+body.dark-mode #projects p,
+body.dark-mode #contact h2,
+body.dark-mode #contact p,
+body.dark-mode footer p {
+  color: #f0f0f0; /* Ensure text is light in dark mode */
+}
+
+/* Project Cards Styling */
 #projects .project-container {
   display: flex;
   flex-wrap: wrap;
@@ -100,8 +142,15 @@ section {
   padding: 20px;
   width: 300px;
   border-radius: 5px;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  transition: box-shadow 0.3s ease, transform 0.3s ease,
+    background-color 0.5s ease, color 0.5s ease;
   will-change: transform, opacity;
+}
+
+body.dark-mode .project-card {
+  background-color: #1f1f1f;
+  color: #f0f0f0;
+  border-color: #444;
 }
 
 .project-card:hover {
@@ -123,6 +172,10 @@ section {
   font-weight: bold;
 }
 
+body.dark-mode .project-card a {
+  color: #ff6347; /* Accent color in Dark Mode */
+}
+
 .project-card a:hover {
   text-decoration: underline;
 }
@@ -132,6 +185,11 @@ section {
   height: auto;
   border-radius: 5px;
   margin-bottom: 10px;
+}
+
+body.dark-mode .project-image {
+  filter: brightness(0.8);
+  transition: filter 0.5s ease;
 }
 
 /* Contact Form Styling */
@@ -170,6 +228,10 @@ section {
   border-radius: 4px;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.3s ease;
+}
+
+body.dark-mode #contact-form button {
+  background: #555;
 }
 
 #contact-form button:hover {
@@ -231,4 +293,14 @@ footer.dark-mode {
 .animate__fadeInUp {
   opacity: 1 !important;
   transform: translateY(0) !important;
+}
+
+/* Respect Users' Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }
