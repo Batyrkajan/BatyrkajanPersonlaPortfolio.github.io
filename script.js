@@ -20,8 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// script.js (continued)
-
 document.addEventListener("DOMContentLoaded", () => {
   const contactForm = document.getElementById("contact-form");
 
@@ -35,5 +33,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Reset the form
     contactForm.reset();
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const themeToggle = document.getElementById("theme-toggle");
+
+  themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+
+    // Change toggle button icon
+    if (document.body.classList.contains("dark-mode")) {
+      themeToggle.textContent = "☀️";
+    } else {
+      themeToggle.textContent = "🌙";
+    }
   });
 });
